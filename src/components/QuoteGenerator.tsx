@@ -1,15 +1,28 @@
 import React, { Component } from "react";
 import API from "../API";
 
-class QuoteGenerator extends Component {
-  state = {
+type AppProps = null;
+interface AppState {
+  quoteData: {
+    character: string;
+    dialog: string;
+    movie: string;
+    _id: string;
+  }[];
+  characterData: string;
+  isLoaded: boolean;
+  randomNum: number;
+}
+
+class QuoteGenerator extends Component<AppProps, AppState> {
+  state: AppState = {
     quoteData: [],
     characterData: "",
     isLoaded: false,
-    randomNum: 0
+    randomNum: 0,
   };
 
-  render() {
+  public render(): JSX.Element {
     const { quoteData } = this.state;
     const { characterData } = this.state;
 
@@ -42,7 +55,7 @@ class QuoteGenerator extends Component {
         this.setState({ quoteData: docs });
       })
       .then(() => {
-        this.setState(currentState => {
+        this.setState((currentState) => {
           const randomNum = Math.floor(
             Math.random() * currentState.quoteData.length - 1
           );
@@ -51,7 +64,7 @@ class QuoteGenerator extends Component {
       });
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps: AppProps, prevState: AppState): void {
     if (prevState.randomNum !== this.state.randomNum) {
       this.fetchCharacterById();
     }
