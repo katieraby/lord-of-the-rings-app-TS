@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../API";
 
-type AppProps = {};
+interface AppProps {}
 interface AppState {
   quoteData: {
     character: string;
