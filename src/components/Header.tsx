@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header: React.FC<{}> = (): JSX.Element => {
   return (
     <header>
       <h1>One React App to Rule Them All</h1>

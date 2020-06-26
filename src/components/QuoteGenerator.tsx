@@ -22,18 +22,15 @@ class QuoteGenerator extends Component<AppProps, AppState> {
     randomNum: 0,
   };
 
-  public render(): JSX.Element {
-    const { quoteData } = this.state;
-    const { characterData } = this.state;
+  render(): JSX.Element {
+    const { quoteData, characterData, randomNum } = this.state;
 
     return (
       <>
         {!this.state.isLoaded ? null : (
           <>
             <section className="quoteSection">
-              <h2 className="quote">
-                {quoteData[this.state.randomNum].dialog}
-              </h2>
+              <h2 className="quote">{quoteData[randomNum].dialog}</h2>
               <p className="quotedBy">-- {characterData}</p>
             </section>
             <button className="randomise-btn" onClick={this.handleRandomise}>
